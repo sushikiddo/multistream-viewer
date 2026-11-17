@@ -1,0 +1,11 @@
+{
+  "name": "multistream-viewer",
+  "productName": "MultiStream Viewer",
+  "version": "1.0.0",
+  "description": "Tek pencerede 16'ya kadar Twitch/Kick/YouTube canlı yayınını aynı anda izleme uygulaması",
+  "author": "sushikiddo",
+  "license": "MIT",
+  "private": true,
+  "repository": "github:sushikiddo/multistream-viewer",
+  "main": "src/main/main.js"
+}

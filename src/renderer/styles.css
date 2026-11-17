@@ -1,0 +1,328 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #0e0e10;
+  color: #efeff1;
+  font-family: "Segoe UI", Roboto, Arial, "Segoe UI Emoji", sans-serif;
+  font-size: 13px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- toolbar ---------- */
+
+.toolbar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: #18181b;
+  border-bottom: 1px solid #2f2f35;
+}
+
+.toolbar__input {
+  flex: 1 1 380px;
+  min-width: 200px;
+  height: 30px;
+  padding: 0 10px;
+  background: #0e0e10;
+  color: #efeff1;
+  border: 1px solid #3a3a3d;
+  border-radius: 4px;
+  outline: none;
+  font: inherit;
+}
+
+.toolbar__input:hover {
+  border-color: #53535f;
+}
+
+.toolbar__input:focus {
+  border-color: #9146ff;
+  box-shadow: 0 0 0 1px #9146ff;
+}
+
+.toolbar__input::placeholder {
+  color: #7a7a85;
+}
+
+.toolbar__sep {
+  width: 1px;
+  height: 20px;
+  background: #3a3a3d;
+}
+
+.btn {
+  height: 30px;
+  padding: 0 12px;
+  background: #2f2f35;
+  color: #efeff1;
+  border: 0;
+  border-radius: 4px;
+  font: inherit;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+
+.btn:hover {
+  background: #3a3a44;
+}
+
+.btn:active {
+  background: #26262c;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+  background: #2f2f35;
+}
+
+.btn--primary {
+  background: #9146ff;
+}
+
+.btn--primary:hover {
+  background: #a970ff;
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: #e91916;
+}
+
+.counter {
+  min-width: 44px;
+  text-align: center;
+  color: #adadb8;
+  font-variant-numeric: tabular-nums;
+}
+
+.counter--full {
+  color: #ff8f00;
+  font-weight: 700;
+}
+
+.status {
+  flex: 0 1 340px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #adadb8;
+}
+
+.status--error {
+  color: #ff6b6b;
+}
+
+.status--ok {
+  color: #53fc18;
+}
+
+/* ---------- stage / grid ---------- */
+
+.stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: 4px;
+  padding: 4px;
+}
+
+.empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+  color: #adadb8;
+  pointer-events: none;
+}
+
+.empty[hidden] {
+  display: none;
+}
+
+.empty__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #efeff1;
+}
+
+.empty__hint {
+  max-width: 560px;
+  line-height: 1.5;
+}
+
+/* ---------- tiles ---------- */
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: #000;
+  border: 1px solid #2f2f35;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.tile:hover {
+  border-color: #53535f;
+}
+
+.tile--audio.tile--twitch {
+  border-color: #9146ff;
+  box-shadow: 0 0 0 1px #9146ff;
+}
+
+.tile--audio.tile--kick {
+  border-color: #53fc18;
+  box-shadow: 0 0 0 1px #53fc18;
+}
+
+.tile--audio.tile--youtube {
+  border-color: #ff0000;
+  box-shadow: 0 0 0 1px #ff0000;
+}
+
+.tile--dragging {
+  opacity: 0.5;
+}
+
+.tile--drop-target {
+  border-color: #efeff1;
+  box-shadow: 0 0 0 2px #efeff1;
+}
+
+.tile__header {
+  flex: 0 0 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 4px 0 6px;
+  background: #18181b;
+  cursor: grab;
+  user-select: none;
+}
+
+.tile__header:active {
+  cursor: grabbing;
+}
+
+.badge {
+  flex: 0 0 auto;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+.badge--twitch {
+  background: #9146ff;
+  color: #fff;
+}
+
+.badge--kick {
+  background: #53fc18;
+  color: #0e0e10;
+}
+
+.badge--youtube {
+  background: #ff0000;
+  color: #fff;
+}
+
+.tile__name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: 600;
+}
+
+.tile__actions {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 2px;
+}
+
+.icon-btn {
+  width: 24px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: #efeff1;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+
+.icon-btn:hover {
+  background: #3a3a44;
+}
+
+.icon-btn--danger:hover {
+  background: #e91916;
+}
+
+.tile__body {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  background: #000;
+}
+
+webview {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Drag events would otherwise be swallowed by the guest pages. */
+.grid--dragging webview {
+  pointer-events: none;
+}
+
+.tile--strip .tile__name {
+  font-size: 11px;
+}
+
+.tile--strip .badge {
+  font-size: 9px;
+}
+
+/* Narrow strip tiles in spotlight mode: keep only essential buttons visible. */
+.tile--strip .tile__actions .icon-btn:not(:first-child):not(:nth-child(2)):not(:last-child) {
+  display: none;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:;">
+  <title>MultiStream Viewer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="toolbar">
+    <input id="stream-input" class="toolbar__input" type="text" autocomplete="off" spellcheck="false"
+      aria-label="Yayın ekle"
+      placeholder="Twitch, Kick veya YouTube linki (örn: twitch.tv/xqc, kick.com/abc, youtu.be/...) — Enter">
+    <button id="add-btn" class="btn btn--primary" type="button">Ekle</button>
+    <span id="counter" class="counter" title="Eklenen yayın sayısı">0/16</span>
+    <span class="toolbar__sep" aria-hidden="true"></span>
+    <button id="mute-all-btn" class="btn" type="button" title="Tüm yayınların sesini kapat (Ctrl+M)">Tümünü sessize al</button>
+    <button id="reload-all-btn" class="btn" type="button" title="Tüm oynatıcıları yeniden yükle">Tümünü yenile</button>
+    <button id="clear-btn" class="btn btn--danger" type="button" title="Tüm yayınları kaldır">Hepsini temizle</button>
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+  </header>
+  <main class="stage">
+    <div id="grid" class="grid"></div>
+    <div id="empty-state" class="empty">
+      <div class="empty__title">Henüz yayın eklenmedi</div>
+      <div class="empty__hint">Yukarıya bir Twitch, Kick veya YouTube linki yapıştırıp Enter'a basın.
+        Birden fazla linki aynı anda yapıştırabilirsiniz (en fazla 16).</div>
+      <div class="empty__hint">Örnekler: twitch.tv/xqc · kick.com/trainwreckstv · youtu.be/dQw4w9WgXcQ · yt:ID</div>
+    </div>
+  </main>
+  <script src="../shared/parse.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>
